@@ -40,10 +40,19 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(dizi){
+  const result = [] 
+for(let i = 0 ; i <dizi.length; i++){
+    result[i] = dizi[i]
 }
+ console.log(result)
+  return result;
 
+//const dizi[];
+//return [...dizi];
+
+} 
+//console.log(dizi)
 
 /* Görev 2:
 Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları kabul etmelidir:
@@ -56,9 +65,16 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesitmi(dizi1){
+if(dizi1.length === 25){
+  return true;
 }
+else{
+  return false;
+}
+}
+console.log("görev 2")
+console.log(dizi25Cesitmi(orijinalTatlar));
 
 
 /* Görev 3:
@@ -74,9 +90,14 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
+function cesitEkle(dizi,tatlı){
+
+  dizi.unshift(tatlı)
+return dizi
+
+
 }
+
 
 
 /* Cörev 4:
@@ -92,10 +113,14 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
-}
+function sonCesitiKaldir(tatlar){
 
+  tatlar.pop()
+  return tatlar
+
+  
+}
+console.log(sonCesitiKaldir(orijinalTatlar))
 
 /* Görev 5:
 Dizideki belirli bir indeksteki çeşniyi döndüren bir işlev yazın.
@@ -108,10 +133,13 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
-}
+function indekstekiCesitiGetir(tatlar,sayi){
 
+  return tatlar[sayi]
+  
+
+}
+console.log(indekstekiCesitiGetir(orijinalTatlar,2))
 
 /* Görev 6:
 
@@ -128,10 +156,24 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(tatlar,lezzet){
+  
+ for(let i=0; i<tatlar.length ; i++){
+
+ 
+  const element =tatlar [i];
+ 
+ if(element==lezzet){
+  tatlar.splice(i,1)
+ }
+ }
+  return tatlar
 }
 
+//let i=tatlar.indexOf(lezzet){ başka yol denemesi!!!
+ // tatlar.splice(i,1)
+// return tatlar
+//}
 
 /* Görev 7:
 
@@ -154,8 +196,19 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreFiltrele(tatlar,filtreAdi){
+ let yeniDizi=[]
+for(let i = 0;i < tatlar.length; i++){
+  
+  if(tatlar[i].includes(filtreAdi)){
+    yeniDizi.push(tatlar[i])
+    
+  
+  }
+
+}
+
+return yeniDizi;
 }
 
 
@@ -172,10 +225,26 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
-}
+function ortalamaKelimeSayisi(dizi){
+let toplam = 0 
+for(let i = 0; i <dizi.length; i++){
+  let kelimeler=dizi[i].split(" ")
+  let kelimeSayisi = kelimeler.length
+  toplam = toplam + kelimeSayisi 
 
+}
+let evarage = toplam / dizi.length
+return evarage
+
+}
+console.log(ortalamaKelimeSayisi(orijinalTatlar))
+/* alıştırma 1in algoritması!!!
+dizinin her elementine tek tek bakılır.
+her elementin kelime sayısı hesaplanır.
+her elementin kelime sayısı toplanır.
+toplam dizinin uzunluğuna bölünür.
+ortalama dönülür.
+*/
 
 /* ALIŞTIRMA 2:
 Firma mevcut tatların yanında artık mevsimlik lezzetler ve hatta bölgesel lezzetler de sunmaktadır. Toplam 25 lezzet aromasını
@@ -190,9 +259,21 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
-  /*kod buraya*/
+function rastgeleTatlar(orijinalTatlar, yeniTatlar, mevsimlikTatlar,bolgeselTatlar ){
+let rastgeleTatlar = [] , diziTopla = [];
+diziTopla = diziTopla.concat(orijinalTatlar,yeniTatlar,mevsimlikTatlar,bolgeselTatlar);
+let i=0
+while(i<25){
+  let toCheck = diziTopla[Math.floor(Math.random() * diziTopla.length)];
+  if (rastgeleTatlar.includes(toCheck)){
+    i++
+
+  }
+  return(rastgeleTatlar.length)
 }
+}
+
+
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 // const yeniTatlar = [
